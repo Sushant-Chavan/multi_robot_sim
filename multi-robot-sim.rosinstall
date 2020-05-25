@@ -1,4 +1,9 @@
 - git:
+    local-name: multi_robot_sim
+    uri: https://github.com/Sushant-Chavan/multi_robot_sim.git
+    version: kinetic
+
+- git:
     local-name: ropod_sim
     uri: https://github.com/DharminB/ropod_sim.git
     version: master
