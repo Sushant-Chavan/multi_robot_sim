@@ -1,0 +1,4 @@
+- git:
+    local-name: ropod_sim
+    uri: https://github.com/DharminB/ropod_sim.git
+    version: master
