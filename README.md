@@ -1,5 +1,8 @@
 A ROS package to simulate a fleet of robots.
 
+## Dependencies
+1. [ROPOD sim model](https://github.com/DharminB/ropod_sim#ropod_sim)
+
 ## Installation
 
 1. Setup the catkin Workspace
