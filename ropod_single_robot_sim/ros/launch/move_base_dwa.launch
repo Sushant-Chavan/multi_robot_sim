@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <arg name="robot_name"/>
+    <arg name="costmap_params_dir" default="$(find ropod_single_robot_sim)/ros/config/move_base_config"/>
+
+    <node pkg="move_base" type="move_base" respawn="false" ns="/" name="$(arg robot_name)_move_base" output="screen">
+        <!-- Load common costmap params -->
+        <rosparam file="$(arg costmap_params_dir)/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(arg costmap_params_dir)/costmap_common_params.yaml" command="load" ns="local_costmap" />
+
+        <!-- Load costmap global and local params -->
+        <rosparam file="$(arg costmap_params_dir)/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(arg costmap_params_dir)/local_costmap_params.yaml" command="load"/>
+
+        <!-- Load base local planner params -->
+        <rosparam file="$(find ropod_single_robot_sim)/ros/config/move_base_config/base_local_planner_params.yaml" command="load" />
+
+        <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS" />
+
+        <remap from="cmd_vel" to="/$(arg robot_name)/cmd_vel"/>
+        <remap from="odom" to="/$(arg robot_name)/odom"/>
+        <remap from="/move_base_simple/goal" to="/$(arg robot_name)/move_base_simple/goal"/>
+        <remap from="/move_base/cancel" to="/$(arg robot_name)/move_base/cancel"/>
+        <remap from="/move_base/feedback" to="/$(arg robot_name)/move_base/feedback"/>
+        <remap from="/move_base/goal" to="/$(arg robot_name)/move_base/goal"/>
+        <remap from="/move_base/result" to="/$(arg robot_name)/move_base/result"/>
+        <remap from="/move_base/status" to="/$(arg robot_name)/move_base/status"/>
+    </node>
+</launch>
