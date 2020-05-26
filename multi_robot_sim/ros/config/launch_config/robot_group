@@ -14,4 +14,5 @@
 		<arg name="nav_name" value="$(arg nav_name)"/>
 		<arg name="cart_length" value="$(arg cart_length)"/>
 		<arg name="rate" value="$(arg rate)" />
+		<arg name="costmap_params_dir" default="$(find multi_robot_sim)/ros/generated_files/robot_{id}"/>
 	</include>
