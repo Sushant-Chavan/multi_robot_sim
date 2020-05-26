@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="debug" default="false"/>
+    <arg name="start_rviz" default="true"/>
+
+    <arg name="world" default="brsu"/>
+    <arg name="map_file" default="$(find ropod_sim)/world_description/occupancy_grids/$(arg world).yaml" />
+
+    <!-- Run the map server -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+    <!-- Launch Gazebo World and rviz without any carts or robots -->
+    <include file="$(find ropod_sim)/ros/launch/example.launch">
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+        <arg name="gui" value="$(arg gui)"/>
+        <arg name="debug" value="$(arg debug)"/>
+        <arg name="start_rviz" value="$(arg start_rviz)"/>
+        <arg name="rviz_config" value="$(find multi_robot_sim)/ros/generated_files/multi_robot_sim.rviz"/>
+        <arg name="world_model_name" value="$(arg world)"/>
+        <arg name="spawn_robot" value="false"/>
+        <arg name="spawn_cart" value="false"/>
+    </include>
+
+    <!-- Spawn multiple robots with navigation components -->
+    <include file="$(find multi_robot_sim)/ros/generated_files/spawn_multiple_robots.launch">
+        <arg name="model_base_path" value="$(find ropod_sim)/description/xacro"/>
+    </include>
+</launch>
