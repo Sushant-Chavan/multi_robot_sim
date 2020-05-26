@@ -5,6 +5,7 @@ find_package(catkin REQUIRED COMPONENTS
   ropod_single_robot_sim
 )
 
+catkin_python_setup()
 
 catkin_package(
 )
