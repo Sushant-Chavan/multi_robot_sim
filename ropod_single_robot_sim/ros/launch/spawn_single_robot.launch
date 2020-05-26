@@ -1,0 +1,56 @@
+<?xml version='1.0'?>
+<launch>
+    <!-- Robot description -->
+    <arg name="robot_id" default="robot_1"/>
+    <arg name="model" default="ropod"/>
+    <arg name="model_path" default="$(find ropod_sim)/description/xacro/$(arg model).xacro"/>
+    <arg name="cart_length" default="1.1"/>
+    <arg name="rate" default="5.0" />
+
+    <!-- Robot Spawn position -->
+    <arg name="init_x" default="0.0"/>
+    <arg name="init_y" default="0.0"/>
+    <arg name="init_theta" default="0.0"/>
+
+    <!-- Map offsets -->
+    <arg name="map_offset_x" default="0.0" />
+    <arg name="map_offset_y" default="0.0" />
+    <arg name="map_offset_theta" default="0.0" />
+
+    <!-- Navigation parameters -->
+    <arg name="start_move_base" default="true"/>
+    <arg name="nav_name" default="dwa"/>
+
+    <!-- Launch the Robot -->
+    <include file="$(find ropod_sim)/ros/launch/ropod.launch">
+        <arg name="model" value="$(arg model)"/>
+        <arg name="model_path" value="$(arg model_path)"/>
+        <arg name="robot_id" value="$(arg robot_id)" />
+        <arg name="init_x" value="$(arg init_x)" />
+        <arg name="init_y" value="$(arg init_y)" />
+        <arg name="init_theta" value="$(arg init_theta)" />
+        <arg name="cart_length" value="$(arg cart_length)" />
+        <arg name="rate" default="$(arg rate)" />
+    </include>
+
+    <group if="$(arg start_move_base)">
+        <!-- Launch AMCL -->
+        <include file="$(find ropod_single_robot_sim)/ros/launch/amcl.launch">
+            <arg name="robot_name" value="$(arg robot_id)" />
+            <arg name="initial_pose_x" value="$(eval arg('init_x') + arg('map_offset_x'))" />
+            <arg name="initial_pose_y" value="$(eval arg('init_y') + arg('map_offset_y'))" />
+            <arg name="initial_pose_a" value="$(eval arg('init_theta') + arg('map_offset_theta'))" />
+        </include>
+
+        <!-- Launch MoveBase DWA if activated -->
+        <include file="$(find ropod_single_robot_sim)/ros/launch/move_base_dwa.launch" if="$(eval arg('nav_name') == 'dwa')">
+            <arg name="robot_name" value="$(arg robot_id)" />
+        </include>
+
+        <!-- Launch MoveBase TEB if activated -->
+        <include file="$(find ropod_single_robot_sim)/ros/launch/move_base_teb.launch" if="$(eval arg('nav_name') == 'teb')">
+            <arg name="robot_name" value="$(arg robot_id)" />
+        </include>
+    </group>
+
+</launch>
