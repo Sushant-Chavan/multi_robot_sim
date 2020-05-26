@@ -2,10 +2,15 @@ A ROS package to simulate a fleet of robots.
 
 ## Dependencies
 1. [ROPOD sim model](https://github.com/DharminB/ropod_sim#ropod_sim)
+2. [TEB local planner](http://wiki.ros.org/teb_local_planner)
 
 ## Installation
 
-1. Setup the catkin Workspace
+1. Install dependencies
+    ```
+    sudo apt install -y ros-kinetic-teb-local-planner
+    ```
+2. Setup the catkin Workspace
     ```
     mkdir ~/catkin_ws/src/simulation
     cd ~/catkin_ws
@@ -14,7 +19,7 @@ A ROS package to simulate a fleet of robots.
     wstool update -t src/simulation
     # rosdep install --from-paths src/simulation --ignore-src --rosdistro=kinetic -y
     ```
-2. Build the packages
+3. Build the packages
     ```
     catkin build
     ```
