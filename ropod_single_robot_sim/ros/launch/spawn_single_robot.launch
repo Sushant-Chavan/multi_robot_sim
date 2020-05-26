@@ -19,7 +19,7 @@
 
     <!-- Navigation parameters -->
     <arg name="start_move_base" default="true"/>
-    <arg name="nav_name" default="dwa"/>
+    <arg name="nav_name" default="teb"/>
 
     <!-- Launch the Robot -->
     <include file="$(find ropod_sim)/ros/launch/ropod.launch">
