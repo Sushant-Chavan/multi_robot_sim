@@ -2,7 +2,7 @@
 <package format="2">
   <name>ropod_single_robot_sim</name>
   <version>0.0.0</version>
-  <description>A package to simulate setup navigation for a single ROPOD simulation model</description>
+  <description>A package to simulate navigation for a single ROPOD simulation model</description>
 
   <maintainer email="gitecsvc@gmail.com">Sushant Chavan</maintainer>
 

@@ -18,7 +18,7 @@
     <arg name="map_offset_theta" default="0.0" />
 
     <!-- Navigation parameters -->
-    <arg name="start_move_base" default="true"/>
+    <arg name="start_navigation_stack" default="true"/>
     <arg name="nav_name" default="teb"/>
 
     <!-- Launch the Robot -->
@@ -33,7 +33,7 @@
         <arg name="rate" default="$(arg rate)" />
     </include>
 
-    <group if="$(arg start_move_base)">
+    <group if="$(arg start_navigation_stack)">
         <!-- Launch AMCL -->
         <include file="$(find ropod_single_robot_sim)/ros/launch/amcl.launch">
             <arg name="robot_name" value="$(arg robot_id)" />
