@@ -1,0 +1,10 @@
+<?xml version='1.0'?>
+<launch>
+	<arg name="map_offset_x" default="0.0" />
+	<arg name="map_offset_y" default="0.0" />
+	<arg name="map_offset_theta" default="0.0" />
+	<arg name="start_navigation_stack" default="true"/>
+	<arg name="nav_name" default="teb"/>
+	<arg name="cart_length" default="1.1"/>
+	<arg name="rate" default="5.0" />
+	<arg name="model_base_path" default="$(find ropod_sim)/description/xacro"/>
