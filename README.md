@@ -1,5 +1,12 @@
 A ROS package to simulate a fleet of robots.
 
+# Table of Contents
+   * [Installation](#installation)
+      * [Dependencies](#dependencies)
+      * [Install instructions](#install-instructions)
+   * [Usage](#usage)
+      * [Single robot simulation](#single-robot-simulation)
+
 # Installation
 
 ## Dependencies
