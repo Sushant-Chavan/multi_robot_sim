@@ -7,11 +7,11 @@ import yaml
 
 class Utils(object):
 
-    """Utility functions for multi ropod simulation"""
+    """Utility functions for multi robot simulation"""
 
     @staticmethod
     def generate_rviz_config(generated_files_dir, config_dir, num_of_robots,
-                             filename="multi_ropod_sim"):
+                             filename="multi_robot_sim"):
         """Generate rviz config file containing all robots along with their
            necessary topics
 
@@ -72,8 +72,8 @@ class Utils(object):
         # Create new costmap param files for all the robots
         for i in range(num_of_robots):
             # Create a directory for the current robot config
-            id_num = "{0:0=3d}".format(i+1)
-            dir_name = os.path.join(generated_files_dir, "ropod_" + id_num)
+            id_num = "{}".format(i+1)
+            dir_name = os.path.join(generated_files_dir, "robot_" + id_num)
             os.mkdir(dir_name)
             # Generate the costmap param files
             data = {'id':id_num}
