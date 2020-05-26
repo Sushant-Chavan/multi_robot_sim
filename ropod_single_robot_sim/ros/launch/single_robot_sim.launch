@@ -7,7 +7,19 @@
     <arg name="debug" default="false"/>
     <arg name="start_rviz" default="true"/>
 
-    <arg name="world_model_name" default="hall"/>
+    <arg name="spawn_robot" default="true"/>
+
+    <arg name="world" default="brsu"/>
+    <!-- Map params -->
+    <arg name="map_file" default="$(find ropod_sim)/world_description/occupancy_grids/$(arg world).yaml" />
+
+    <!-- Robot spawn pose -->
+    <arg name="init_x" default="0.0" />
+    <arg name="init_y" default="5.0" />
+    <arg name="init_theta" default="0.0" />
+
+    <!-- Run the map server -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
 
     <!-- Launch Gazebo World and rviz without any carts or robots -->
     <include file="$(find ropod_sim)/ros/launch/example.launch">
@@ -16,14 +28,18 @@
         <arg name="gui" default="$(arg gui)"/>
         <arg name="debug" default="$(arg debug)"/>
         <arg name="start_rviz" default="$(arg start_rviz)"/>
-        <arg name="world_model_name" default="$(arg world_model_name)"/>
+        <arg name="rviz_config" default="$(find ropod_single_robot_sim)/ros/config/example.rviz"/>
+        <arg name="world_model_name" default="$(arg world)"/>
         <arg name="spawn_robot" default="false"/>
         <arg name="spawn_cart" default="false"/>
     </include>
 
     <!-- Spawn the robot with navigation components -->
-    <include file="$(find ropod_single_robot_sim)/ros/launch/spawn_single_robot.launch">
-        <arg name="robot_id" default="load"/>
+    <include file="$(find ropod_single_robot_sim)/ros/launch/spawn_single_robot.launch" if="$(arg spawn_robot)">
+        <arg name="robot_id" default="robot_1"/>
+        <arg name="init_x" default="$(arg init_x)" />
+        <arg name="init_y" default="$(arg init_y)" />
+        <arg name="init_theta" default="$(arg init_theta)" />
     </include>
 
 </launch>
