@@ -26,7 +26,7 @@ A ROS package to simulate a fleet of robots.
     mkdir ~/catkin_ws/src/simulation
     cd ~/catkin_ws
     wstool init src/simulation
-    wstool merge -t src/simulation https://raw.githubusercontent.com/Sushant-Chavan/multi-robot-sim/kinetic/multi-robot-sim.rosinstall
+    wstool merge -t src/simulation https://raw.githubusercontent.com/Sushant-Chavan/multi_robot_sim/kinetic/multi-robot-sim.rosinstall
     wstool update -t src/simulation
     # rosdep install --from-paths src/simulation --ignore-src --rosdistro=kinetic -y
     ```
