@@ -12,7 +12,7 @@
 		<arg name="map_offset_theta" value="$(arg map_offset_theta)" />
 		<arg name="start_navigation_stack" value="$(arg start_navigation_stack)"/>
 		<arg name="nav_name" value="$(arg nav_name)"/>
-        <arg name="controller_frequency" value="$(arg move_base_controller_frequency)"/>
+		<arg name="controller_frequency" value="$(arg move_base_controller_frequency)"/>
 		<arg name="cart_length" value="$(arg cart_length)"/>
 		<arg name="rate" value="$(arg rate)" />
 		<arg name="costmap_params_dir" value="$(find multi_robot_sim)/ros/generated_files/robot_{id}"/>
