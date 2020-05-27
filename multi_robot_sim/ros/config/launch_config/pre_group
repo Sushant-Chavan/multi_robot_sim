@@ -7,4 +7,5 @@
 	<arg name="nav_name" default="teb"/>
 	<arg name="cart_length" default="1.1"/>
 	<arg name="rate" default="5.0" />
+	<arg name="model" default="ropod"/>
 	<arg name="model_base_path" default="$(find ropod_sim)/description/xacro"/>

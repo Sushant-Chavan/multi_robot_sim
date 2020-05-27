@@ -5,8 +5,8 @@
 		<arg name="init_x" value="{x}" />
 		<arg name="init_y" value="{y}" />
 		<arg name="init_theta" value="{theta}" />
-		<arg name="model" value="{model}"/>
-		<arg name="model_path" default="$(arg model_base_path)/{model}.xacro"/>
+		<arg name="model" value="$(arg model)"/>
+		<arg name="model_path" default="$(arg model_base_path)/$(arg model).xacro"/>
 		<arg name="map_offset_x" value="$(arg map_offset_x)" />
 		<arg name="map_offset_y" value="$(arg map_offset_y)" />
 		<arg name="map_offset_theta" value="$(arg map_offset_theta)" />
