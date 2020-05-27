@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Gazebo config -->
+    <arg name="paused" default="false"/>
+    <arg name="use_sim_time" default="true"/>
+    <arg name="gui" default="true"/>
+    <arg name="debug" default="false"/>
+
+    <!-- RViz config -->
+    <arg name="start_rviz" default="true"/>
+    <arg name="rviz_config" default="$(find multi_robot_sim)/ros/generated_files/multi_robot_sim.rviz"/>
+
+    <!-- World model and map config -->
+    <arg name="world" default="brsu"/>
+    <arg name="map_file" default="$(find ropod_sim)/world_description/occupancy_grids/$(arg world).yaml" />
+
+    <!-- Run the map server -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+    <!-- Start the Gazebo server with and empty world -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="debug" value="$(arg debug)" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="paused" value="$(arg paused)"/>
+        <arg name="use_sim_time" value="$(arg use_sim_time)"/>
+    </include>
+
+    <!-- Spawn the World -->
+    <group>
+        <arg name="world_model"
+             default="$(find ropod_sim)/world_description/$(arg world).xacro"/>
+        <param name="world_description"
+               command="rosrun xacro xacro --inorder '$(arg world_model)'" />
+
+        <!-- spawn uploaded world model -->
+        <node pkg="gazebo_ros" name="gazebo_world_model" type="spawn_model"
+              respawn="false" output="screen"
+              args="-urdf -param world_description -model world -x 0.0 -y 0.0 -z 0.0" />
+    </group>
+
+    <!-- Start RViz -->
+    <group if="$(arg start_rviz)">
+        <node pkg="rviz" type="rviz" name="ropod_sim_rviz"
+              args="-d $(arg rviz_config)" />
+    </group>
+</launch>
