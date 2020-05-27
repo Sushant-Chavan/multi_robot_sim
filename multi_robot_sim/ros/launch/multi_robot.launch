@@ -15,7 +15,7 @@
     <arg name="map_file" default="$(find ropod_sim)/world_description/occupancy_grids/$(arg world).yaml" />
 
     <!-- Launch the world -->
-    <include file="$(find multi_robot_sim)/ros/launch/start_simulation_environment.launch">
+    <include file="$(find ropod_single_robot_sim)/ros/launch/start_simulation_environment.launch">
         <arg name="paused" value="$(arg paused)"/>
         <arg name="use_sim_time" value="$(arg use_sim_time)"/>
         <arg name="gui" value="$(arg gui)"/>
