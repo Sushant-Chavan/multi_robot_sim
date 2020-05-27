@@ -1,0 +1,9 @@
+BBox:
+  BL:
+  - -3
+  - 3
+  TR:
+  - 2
+  - 8
+Orientation: 1.571
+Spacing: 1.0

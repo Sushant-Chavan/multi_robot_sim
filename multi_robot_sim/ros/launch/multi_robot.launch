@@ -14,11 +14,6 @@
     <arg name="world" default="brsu"/>
     <arg name="map_file" default="$(find ropod_sim)/world_description/occupancy_grids/$(arg world).yaml" />
 
-    <!-- Robot spawn pose -->
-    <arg name="init_x" default="0.0" />
-    <arg name="init_y" default="5.0" />
-    <arg name="init_theta" default="0.0" />
-
     <!-- Navigation config -->
     <arg name="nav_name" default="teb"/>
     <arg name="move_base_controller_frequency" default="5.0"/>
@@ -35,14 +30,10 @@
         <arg name="map_file" value="$(arg map_file)" />
     </include>
 
-    <!-- Spawn the robot with navigation components -->
-    <include file="$(find ropod_single_robot_sim)/ros/launch/spawn_single_robot.launch">
-        <arg name="robot_id" value="robot_1"/>
-        <arg name="init_x" value="$(arg init_x)" />
-        <arg name="init_y" value="$(arg init_y)" />
-        <arg name="init_theta" value="$(arg init_theta)" />
+    <!-- Spawn multiple robots with navigation components -->
+    <include file="$(find multi_robot_sim)/ros/generated_files/spawn_multiple_robots.launch">
+        <arg name="model_base_path" value="$(find ropod_sim)/description/xacro"/>
         <arg name="nav_name" value="$(arg nav_name)"/>
-        <arg name="controller_frequency" value="$(arg move_base_controller_frequency)"/>
+        <arg name="move_base_controller_frequency" value="$(arg move_base_controller_frequency)"/>
     </include>
-
 </launch>

@@ -1,0 +1,4 @@
+*.DS_Store
+*.pyc
+
+multi_robot_sim/ros/generated_files/

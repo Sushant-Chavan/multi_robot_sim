@@ -1,0 +1,19 @@
+
+	<!-- ROBOT {id} -->
+	<include file="$(find ropod_single_robot_sim)/ros/launch/spawn_single_robot.launch">
+		<arg name="robot_id" value="robot_{id}"/>
+		<arg name="init_x" value="{x}" />
+		<arg name="init_y" value="{y}" />
+		<arg name="init_theta" value="{theta}" />
+		<arg name="model" value="$(arg model)"/>
+		<arg name="model_path" value="$(arg model_base_path)/$(arg model).xacro"/>
+		<arg name="map_offset_x" value="$(arg map_offset_x)" />
+		<arg name="map_offset_y" value="$(arg map_offset_y)" />
+		<arg name="map_offset_theta" value="$(arg map_offset_theta)" />
+		<arg name="start_navigation_stack" value="$(arg start_navigation_stack)"/>
+		<arg name="nav_name" value="$(arg nav_name)"/>
+		<arg name="controller_frequency" value="$(arg move_base_controller_frequency)"/>
+		<arg name="cart_length" value="$(arg cart_length)"/>
+		<arg name="rate" value="$(arg rate)" />
+		<arg name="costmap_params_dir" value="$(find multi_robot_sim)/ros/generated_files/robot_{id}"/>
+	</include>

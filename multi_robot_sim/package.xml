@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>multi_robot_sim</name>
+  <version>0.0.0</version>
+  <description>The ROS package to launch a fleet of robots</description>
+
+  <maintainer email="gitecsvc@gmail.com">Sushant Chavan</maintainer>
+
+  <license>MIT</license>
+
+  <url type="website">https://github.com/Sushant-Chavan/multi_robot_sim</url>
+
+  <author email="gitecsvc@gmail.com">Sushant Chavan</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>ropod_single_robot_sim</build_depend>
+  <build_export_depend>ropod_single_robot_sim</build_export_depend>
+  <exec_depend>ropod_single_robot_sim</exec_depend>
+
+</package>

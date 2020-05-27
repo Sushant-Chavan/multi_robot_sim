@@ -20,6 +20,8 @@
     <!-- Navigation parameters -->
     <arg name="start_navigation_stack" default="true"/>
     <arg name="nav_name" default="teb"/>
+    <arg name="controller_frequency" default="5.0"/>
+    <arg name="costmap_params_dir" default="$(find ropod_single_robot_sim)/ros/config/move_base_config"/>
 
     <!-- Launch the Robot -->
     <include file="$(find ropod_sim)/ros/launch/ropod.launch">
@@ -45,11 +47,15 @@
         <!-- Launch MoveBase DWA if activated -->
         <include file="$(find ropod_single_robot_sim)/ros/launch/move_base_dwa.launch" if="$(eval arg('nav_name') == 'dwa')">
             <arg name="robot_name" value="$(arg robot_id)" />
+            <arg name="controller_frequency" value="$(arg controller_frequency)"/>
+            <arg name="costmap_params_dir" value="$(arg costmap_params_dir)" />
         </include>
 
         <!-- Launch MoveBase TEB if activated -->
         <include file="$(find ropod_single_robot_sim)/ros/launch/move_base_teb.launch" if="$(eval arg('nav_name') == 'teb')">
             <arg name="robot_name" value="$(arg robot_id)" />
+            <arg name="controller_frequency" value="$(arg controller_frequency)"/>
+            <arg name="costmap_params_dir" value="$(arg costmap_params_dir)" />
         </include>
     </group>
 

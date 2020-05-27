@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <launch>
     <arg name="robot_name"/>
+    <arg name="controller_frequency" default="5.0"/>
     <arg name="costmap_params_dir" default="$(find ropod_single_robot_sim)/ros/config/move_base_config"/>
 
     <node pkg="move_base" type="move_base" respawn="false" ns="/" name="$(arg robot_name)_move_base" output="screen">
@@ -16,6 +17,7 @@
         <rosparam file="$(find ropod_single_robot_sim)/ros/config/move_base_config/base_local_planner_params.yaml" command="load" />
 
         <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS" />
+        <param name="controller_frequency" value="$(arg controller_frequency)" />
 
         <remap from="cmd_vel" to="/$(arg robot_name)/cmd_vel"/>
         <remap from="odom" to="/$(arg robot_name)/odom"/>
